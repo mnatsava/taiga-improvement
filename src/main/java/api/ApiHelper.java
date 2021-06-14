@@ -48,7 +48,7 @@ public class ApiHelper {
 
     public static JsonObject getCurrentUser() {
         Response response;
-        response = ApiClient.get("/users/me");
+        response = ApiClient.get("api/v1/users/me");
         String jsonString = null;
         try {
             jsonString = response.body().string();
@@ -59,7 +59,7 @@ public class ApiHelper {
     }
 
     public static JsonArray getAllProjects() {
-        Response response = ApiClient.get("/projects?member=" + getCurrentUser().get("id").getAsString());
+        Response response = ApiClient.get("api/v1/projects?member=" + getCurrentUser().get("id").getAsString());
         String jsonString = null;
         try {
             jsonString = response.body().string();
@@ -71,7 +71,7 @@ public class ApiHelper {
 
 
     public JsonObject getProject(String projectId) throws IOException {
-        Response response = ApiClient.get("/projects/" + projectId);
+        Response response = ApiClient.get("api/v1/projects/" + projectId);
         String jsonString = response.body().string();
         return JsonParser.parseString(jsonString).getAsJsonObject();
     }
